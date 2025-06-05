@@ -5,8 +5,9 @@
   <title>Chez Picard - Instruments de musique</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body{ 
-      font-family: "Montserrat", Arial, sans-serif; 
+  /* Voici le code css pour ma site de commerce*/
+    body{
+      font-family: "Montserrat", Arial, sans-serif;
       background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
       margin: 0; padding: 0;
       color: #222;
@@ -81,8 +82,8 @@
       font-size: 1.2em;
       font-weight: 700;
     }
-    .produit-info p { 
-      margin: 0 0 7px 0; 
+    .produit-info p {
+      margin: 0 0 7px 0;
     }
     .produit-info .prix {
       color: #3156a3;
@@ -99,8 +100,8 @@
       cursor: pointer;
       transition: background 0.2s;
     }
-    .produit-info button:hover { 
-      background: #203a6b; 
+    .produit-info button:hover {
+      background: #203a6b;
     }
     .panier table {
       width: 100%;
@@ -117,11 +118,11 @@
       font-weight: 700;
       border-bottom: 2px solid #e0eafc;
     }
-    .panier td { 
-      border-bottom: 1px solid #f0f0f0; 
+    .panier td {
+      border-bottom: 1px solid #f0f0f0;
     }
-    .panier td:last-child { 
-      border-bottom: none; 
+    .panier td:last-child {
+      border-bottom: none;
     }
     .panier .qty-btn {
       background: #e0eafc;
@@ -134,8 +135,8 @@
       cursor: pointer;
       transition: background 0.2s;
     }
-    .panier .qty-btn:hover { 
-      background: #cfdef3; 
+    .panier .qty-btn:hover {
+      background: #cfdef3;
     }
     .panier .remove-btn {
       background: none;
@@ -148,8 +149,8 @@
       font-size: 1.05em;
       margin-bottom: 15px;
     }
-    .panier-summary span { 
-      float: right; 
+    .panier-summary span {
+      float: right;
     }
     .panier .checkout-btn {
       width: 100%;
@@ -164,8 +165,8 @@
       margin-top: 10px;
       transition: background 0.2s;
     }
-    .panier .checkout-btn:hover { 
-      background: #1e7e34; 
+    .panier .checkout-btn:hover {
+      background: #1e7e34;
     }
     .reçu-model {
       display: none;
@@ -224,8 +225,8 @@
       color: #aaa;
       cursor: pointer;
     }
-    .reçu-content .close-btn:hover { 
-      color: #3156a3; 
+    .reçu-content .close-btn:hover {
+      color: #3156a3;
     }
     .reçu-content .print-btn {
       background: #3156a3;
@@ -238,20 +239,20 @@
       margin-top: 10px;
       transition: background 0.2s;
     }
-    .reçu-content .print-btn:hover { 
+    .reçu-content .print-btn:hover {
       background: #203a6b;
     }
     @media (max-width: 900px) {
-      .container { 
-        flex-direction: column; gap: 30px; 
+      .container {
+        flex-direction: column; gap: 30px;
       }
     }
     @media (max-width: 600px) {
-      .produits, .panier { 
-        padding: 18px; 
+      .produits, .panier {
+        padding: 18px;
       }
-      .reçu-content { 
-        padding: 12px 6px 16px 6px; 
+      .reçu-content {
+        padding: 12px 6px 16px 6px;
       }
     }
   </style>
@@ -281,28 +282,28 @@
         <tbody id="panierItems"></tbody>
       </table>
       <div class="panier-summary">
-        <div> Sous-total <span id="subtotal">$0.00</span></div>
-        <div>Taxe (13%) <span id="gst">$0.00</span></div>
-        <div>Livraison <span id="shipping">$0.00</span></div>
+        <div> Sous-total <span id="subtotal">0.00$</span></div>
+        <div>Taxe (13%) <span id="taxe">0.00$</span></div>
+        <div>Livraison <span id="shipping">0.00$</span></div>
         <hr>
-        <div style="font-size:1.15em;font-weight:700;">Total <span id="total">$0.00</span></div>
+        <div style="font-size:1.15em;font-weight:700;">Total <span id="total">0.00$</span></div>
       </div>
       <button class="checkout-btn" onclick="generateReçu()" id="checkoutBtn" disabled>Passer la commande</button>
     </section>
   </div>
-  
+ 
   <!-- Le model du reçu-->
   <div class="reçu-model" id="reçuModel">
     <div class="reçu-content" id="reçuContent">
      <button class="close-btn" onclick="closeReçu()">×</button>  
     </div>
   </div>
-  
+ 
   <script>
     const produits = [
      {
       id: 1,
-      name: "Guitare électrique", 
+      name: "Guitare électrique",
       price: 549.99,
       image: "https://cdn.shoplightspeed.com/shops/619825/files/9124993/768x768x2/yamaha-guitare-electrique-yamaha-pac012.jpg"
      },
@@ -312,13 +313,13 @@
        price: 1499.99,
        image: "https://m.media-amazon.com/images/I/71FobkNjTZL.jpg"
      },
-     { 
+     {
        id: 3,
        name: "Batterie acoustique",
        price: 899.99,
        image: "https://boutique.drummondmusique.com/cdn/shop/files/DrummondMusique_Pearl_RSJ465CC31_RoadshowJunior5morceauxavec-banc_baguettes_cymbalesetHardwareinclus_535x.jpg?v=1728400396"
      }
-    ];   
+    ];  
 
     let panier = [];
 
@@ -336,8 +337,8 @@
           <div class="produit-img"><img src="${produit.image}" alt="${produit.name}"></div>
           <div class="produit-info">
             <h3>${produit.name}</h3>
-            <div class="prix">Prix : $${produit.price.toFixed(2)}</div>
-            <button onclick="ajouterAuPanier(${produit.id})" ${boutonDesactive}>Ajouter au panier</button>
+            <div class="prix">Prix :$${produit.price.toFixed(2)}</div>
+            <button onclick="ajouterAuPanier({produit.id})" ${boutonDesactive}>Ajouter au panier</button>
           </div>
         `;
         conteneur.appendChild(carte);
@@ -361,7 +362,6 @@
     function changerQuantite(produitId, delta) {
       let item = panier.find(p => p.id === produitId);
       if (!item) return;
-      item.qty += delta;
       if (item.qty <= 0) {
         panier = panier.filter(p => p.id !== produitId);
       }
@@ -390,7 +390,7 @@
           <td>$${item.price.toFixed(2)}</td>
           <td>
             <button class="qty-btn" onclick="changerQuantite(${item.id}, -1)" ${item.qty <= 1 ? 'disabled' : ''}>-</button>
-            ${item.qty}
+      
             <button class="qty-btn" onclick="changerQuantite(${item.id}, 1)" ${item.qty >= 10 ? 'disabled' : ''}>+</button>
           </td>
           <td>
@@ -401,11 +401,11 @@
       });
 
       document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-      const gst = subtotal * 0.13;
-      document.getElementById('gst').textContent = `$${gst.toFixed(2)}`;
+      const taxe = subtotal * 0.13;
+      document.getElementById('taxe').textContent = `$${taxe.toFixed(2)}`;
       const shipping = subtotal > 0 ? 20 : 0;
       document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
-      const total = subtotal + gst + shipping;
+      const total = subtotal + taxe + shipping;
       document.getElementById('total').textContent = `$${total.toFixed(2)}`;
       document.getElementById('checkoutBtn').disabled = panier.length === 0;
     }
@@ -415,13 +415,11 @@
       if (panier.length === 0) return;
       let subtotal = 0, totalWeight = 0;
       panier.forEach(item => {
-        subtotal += item.price * item.quantity;
-        totalWeight += item.weight * item.quantity;
+        subtotal += item.price * item.qty;
       });
-      const gst = subtotal * 0.05;
-      const qst = subtotal * 0.09975;
-      const shipping = calculateShipping(totalWeight);
-      const total = subtotal + gst + qst + shipping;
+      const taxe = subtotal * 0.13;
+      const shipping = subtotal > 0 ? 20 : 0;
+      const total = subtotal + taxe + shipping;
 
       const now = new Date();
       const dateStr = now.toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -435,19 +433,18 @@
             <tr><th>Produit</th><th>Qté</th><th>Total</th></tr>
           </thead>
           <tbody>
-            ${cart.map(item => `
+            ${panier.map(item => `
               <tr>
                 <td>${item.name}</td>
-                <td>${item.quantity}</td>
-                <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                <td>${item.qty}</td>
+                <td>$${(item.price * item.qty).toFixed(2)}</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
         <div style="text-align:left;margin:18px 0 0 0;">
           <div>Sous-total : <span style="float:right;">$${subtotal.toFixed(2)}</span></div>
-          <div>TPS (5%) : <span style="float:right;">$${gst.toFixed(2)}</span></div>
-          <div>TVQ (9.975%) : <span style="float:right;">$${qst.toFixed(2)}</span></div>
+          <div>Taxe (13%) : <span style="float:right;">$${taxe.toFixed(2)}</span></div>
           <div>Livraison : <span style="float:right;">$${shipping.toFixed(2)}</span></div>
           <hr>
           <div style="font-size:1.15em;font-weight:700;">Total : <span style="float:right;">$${total.toFixed(2)} CAD</span></div>
@@ -455,8 +452,8 @@
         <div style="margin-top:22px;color:#28a745;font-weight:700;">Merci pour votre achat chez chez Picard!</div>
         <button class="print-btn" onclick="window.print()">Imprimer le reçu</button>
       `;
-      document.getElementById('receiptContent').innerHTML = receiptHTML + `<button class="close-btn" onclick="closeReceipt()">&times;</button>`;
-      document.getElementById('receiptModel').style.display = 'flex';
+      document.getElementById('reçuContent').innerHTML = reçuHTML + `<button class="close-btn" onclick="closeReçu()">&times;</button>`;
+      document.getElementById('reçuModel').style.display = 'flex';
 
       //Panier redémarre après l’achat
       panier = [];
@@ -469,7 +466,7 @@
     // Initialisation
     afficherProduits();
     afficherPanier();
-    
+   
   </script>
 </body>
 </html>
